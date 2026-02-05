@@ -1,4 +1,5 @@
 const express = require('express');
+
 const cors = require('cors');
 const dotenv = require('dotenv');
 const { errorHandler } = require('./middleware/errorHandler');
@@ -13,14 +14,18 @@ app.use(express.json());
 
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'));
-// app.use('/api/expenses', require('./routes/expenseRoutes'));
-
+app.use('/api/expenses', require('./routes/expenseRoutes'));
+app.use('/api/budgets', require('./routes/budgetRoutes'));
+app.use('/api/reminders', require('./routes/reminderRoutes'));
+app.use('/api/rooms', require('./routes/roomRoutes'));
+app.use('/api/market', require('./routes/marketRoutes'));
+app.use('/api/chat', require('./routes/chatRoutes'));
 
 app.get('/', (req, res) => {
       res.send('API is running...');
 });
 
-// Error Handler
+// Error Handler (MUST BE LAST)
 app.use(errorHandler);
 
 

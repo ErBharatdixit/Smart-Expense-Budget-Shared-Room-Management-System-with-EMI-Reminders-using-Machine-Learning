@@ -1,10 +1,60 @@
 @import "tailwindcss";
 
+:root {
+      /* Premium Dark Theme Palette */
+      --bg-midnight: #0B1120;
+      /* Deep Midnight Navy */
+      --bg-surface: #1E293B;
+      /* Slate 800 */
+
+      --primary-royal-blue: #2563EB;
+      /* Royal Blue */
+      --primary-hover: #1D4ED8;
+
+      /* Functional Colors */
+      --color-expense: #EF4444;
+      /* Red */
+      --color-budget: #10B981;
+      /* Green */
+      --color-emi: #F59E0B;
+      /* Orange */
+      --color-shared: #3B82F6;
+      /* Blue */
+
+      --text-main: #F8FAFC;
+      /* Slate 50 */
+      --text-muted: #94A3B8;
+      /* Slate 400 */
+
+      --sidebar-width: 280px;
+}
+
 body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-            'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-            sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-midnight);
+      color: var(--text-main);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+}
+
+/* Glassmorphism Utilities */
+.glass-card {
+      background: rgba(30, 41, 59, 0.4);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.glass-input {
+      background: rgba(15, 23, 42, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: white;
+      transition: all 0.2s;
+}
+
+.glass-input:focus {
+      border-color: var(--primary-royal-blue);
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+      outline: none;
 }

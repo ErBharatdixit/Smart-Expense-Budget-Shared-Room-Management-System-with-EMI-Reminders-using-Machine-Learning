@@ -3,6 +3,11 @@ import API from './api';
 const authService = {
       register: async (userData) => {
             const response = await API.post('/auth/register', userData);
+            return response.data;
+      },
+
+      verifyEmail: async (data) => {
+            const response = await API.post('/auth/verify-email', data);
             if (response.data) {
                   localStorage.setItem('user', JSON.stringify(response.data));
                   localStorage.setItem('token', response.data.token);

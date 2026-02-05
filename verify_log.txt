@@ -1,0 +1,63 @@
+﻿--- Testing /analyze_behavior ---
+Status: 200
+Raw Text: {
+  "behavior": "Aggressive",
+  "stable_p": 9.090909090909092,
+  "tags": [
+    "High Variable Spend",
+    "Entertainment Heavy",
+    "Frequent Shopper"
+  ],
+  "variable_p": 90.9090909090909
+}
+
+Aggressive Behavior Test: {'behavior': 'Aggressive', 'stable_p': 9.090909090909092, 'tags': ['High Variable Spend', 'Entertainment Heavy', 'Frequent Shopper'], 'variable_p': 90.9090909090909}
+Conservative Behavior Test: {'behavior': 'Conservative', 'stable_p': 90.9090909090909, 'tags': [], 'variable_p': 9.090909090909092}
+python : Traceback 
+(most recent call 
+last):
+At line:1 char:1
++ python 
+verify_advanced_ml.py 
+2>&1 | Out-File 
+-FilePath 
+verify_log.txt ...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~
+    + CategoryInfo     
+         : No    
+tSpecified: (T    
+raceback (most     
+recent call l    
+ast)::String)     [], 
+RemoteExce    ption
+    + FullyQualifi    
+edErrorId : Na    
+tiveCommandErr    or
+ 
+  File "C:\Users\Parth 
+Dixit\OneDrive\Desktop\
+ExpenseML\verify_advanc
+ed_ml.py", line 31, in 
+<module>
+    print("\n\u2705 
+Advanced ML Features 
+Verified!")
+    ~~~~~^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
+^^
+  File "C:\Python313\Li
+b\encodings\cp1252.py",
+ line 19, in encode
+    return codecs.charm
+ap_encode(input,self.er
+rors,encoding_table)[0]
+           ~~~~~~~~~~~~
+~~~~~~~~~^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 
+'charmap' codec can't 
+encode character 
+'\u2705' in position 
+2: character maps to 
+<undefined>
