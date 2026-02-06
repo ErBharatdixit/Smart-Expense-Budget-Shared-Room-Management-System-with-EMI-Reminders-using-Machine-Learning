@@ -19,7 +19,8 @@ const predictCategory = asyncHandler(async (req, res) => {
 
       try {
             // Call Python ML Service
-            const response = await axios.post('http://127.0.0.1:5001/predict_category', {
+            const ML_SERVICE_URL = process.env.ML_SERVICE_URL || 'http://127.0.0.1:5001';
+            const response = await axios.post(`${ML_SERVICE_URL}/predict_category`, {
                   description: title
             });
 
@@ -121,7 +122,8 @@ const predictNextMonthExpense = asyncHandler(async (req, res) => {
 
       try {
             // Call Python ML Service
-            const response = await axios.post('http://127.0.0.1:5001/predict_next_month', {
+            const ML_SERVICE_URL = process.env.ML_SERVICE_URL || 'http://127.0.0.1:5001';
+            const response = await axios.post(`${ML_SERVICE_URL}/predict_next_month`, {
                   monthly_totals: monthlyTotals
             });
 
@@ -188,10 +190,11 @@ const getFinancialInsights = asyncHandler(async (req, res) => {
 
       try {
             // Call ML Service for Prediction, Behavior, and Personality
+            const ML_SERVICE_URL = process.env.ML_SERVICE_URL || 'http://127.0.0.1:5001';
             const [predRes, behaviorRes, personalityRes] = await Promise.all([
-                  axios.post('http://127.0.0.1:5001/predict_next_month', { monthly_totals: monthlyTotals }),
-                  axios.post('http://127.0.0.1:5001/analyze_behavior', { category_distribution: catDistMap }),
-                  axios.post('http://127.0.0.1:5001/analyze_personality', {
+                  axios.post(`${ML_SERVICE_URL}/predict_next_month`, { monthly_totals: monthlyTotals }),
+                  axios.post(`${ML_SERVICE_URL}/analyze_behavior`, { category_distribution: catDistMap }),
+                  axios.post(`${ML_SERVICE_URL}/analyze_personality`, {
                         category_distribution: catDistMap,
                         total_spend: monthlyTotals.length > 0 ? monthlyTotals[monthlyTotals.length - 1] : 0,
                         month_count: monthlyTotals.length
