@@ -9,7 +9,7 @@ build/
 
 # Sensitive files
 backend/.env
-# frontend/.env (Intentionally keeping this as user wanted it pushed)
+frontend/.env
 
 # Debug logs
 npm-debug.log*
