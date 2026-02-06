@@ -1,56 +1,27 @@
-import axios from 'axios';
-
-const API_URL = 'http://localhost:8000/api/rooms/';
-
-// Get user token
-const getToken = () => {
-      const user = JSON.parse(localStorage.getItem('user'));
-      return user?.token;
-}
+import API from './api';
 
 const getMyRoom = async () => {
-      const config = {
-            headers: {
-                  Authorization: `Bearer ${getToken()}`,
-            },
-      };
-      const response = await axios.get(API_URL + 'myroom', config);
+      const response = await API.get('/rooms/myroom');
       return response.data;
 };
 
 const createRoom = async (roomData) => {
-      const config = {
-            headers: {
-                  Authorization: `Bearer ${getToken()}`,
-            },
-      };
-      const response = await axios.post(API_URL, roomData, config);
+      const response = await API.post('/rooms/', roomData);
       return response.data;
 };
 
 const joinRoom = async (roomData) => {
-      const config = {
-            headers: {
-                  Authorization: `Bearer ${getToken()}`,
-            },
-      };
-      const response = await axios.post(API_URL + 'join', roomData, config);
+      const response = await API.post('/rooms/join', roomData);
       return response.data;
 };
 
 const addSharedExpense = async (expenseData) => {
-      const config = {
-            headers: {
-                  Authorization: `Bearer ${getToken()}`,
-            },
-      };
-      const response = await axios.post(API_URL + 'expenses', expenseData, config);
+      const response = await API.post('/rooms/expenses', expenseData);
       return response.data;
 };
 
 const predictRoomExpense = async () => {
-      const config = { headers: { Authorization: `Bearer ${getToken()}` } };
-      const response = await axios.get(`${API_URL}predict`, config);
+      const response = await API.get('/rooms/predict');
       return response.data;
 };
 

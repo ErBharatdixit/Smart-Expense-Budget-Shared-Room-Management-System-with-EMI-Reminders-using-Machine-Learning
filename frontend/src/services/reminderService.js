@@ -1,50 +1,22 @@
-import axios from 'axios';
-
-const API_URL = 'http://localhost:8000/api/reminders/';
-
-// Get user token
-const getToken = () => {
-      const user = JSON.parse(localStorage.getItem('user'));
-      return user?.token;
-}
+import API from './api';
 
 const getReminders = async () => {
-      const config = {
-            headers: {
-                  Authorization: `Bearer ${getToken()}`,
-            },
-      };
-      const response = await axios.get(API_URL, config);
+      const response = await API.get('/reminders/');
       return response.data;
 };
 
 const createReminder = async (reminderData) => {
-      const config = {
-            headers: {
-                  Authorization: `Bearer ${getToken()}`,
-            },
-      };
-      const response = await axios.post(API_URL, reminderData, config);
+      const response = await API.post('/reminders/', reminderData);
       return response.data;
 };
 
 const updateReminder = async (id, reminderData) => {
-      const config = {
-            headers: {
-                  Authorization: `Bearer ${getToken()}`,
-            },
-      };
-      const response = await axios.put(API_URL + id, reminderData, config);
+      const response = await API.put('/reminders/' + id, reminderData);
       return response.data;
 };
 
 const deleteReminder = async (id) => {
-      const config = {
-            headers: {
-                  Authorization: `Bearer ${getToken()}`,
-            },
-      };
-      const response = await axios.delete(API_URL + id, config);
+      const response = await API.delete('/reminders/' + id);
       return response.data;
 };
 

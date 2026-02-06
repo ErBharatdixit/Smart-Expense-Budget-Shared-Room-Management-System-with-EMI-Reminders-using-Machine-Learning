@@ -1,40 +1,17 @@
-import axios from 'axios';
-
-const API_URL = 'http://localhost:8000/api/budgets/';
-
-// Get user token
-const getToken = () => {
-      const user = JSON.parse(localStorage.getItem('user'));
-      return user?.token;
-}
+import API from './api';
 
 const getBudgets = async () => {
-      const config = {
-            headers: {
-                  Authorization: `Bearer ${getToken()}`,
-            },
-      };
-      const response = await axios.get(API_URL, config);
+      const response = await API.get('/budgets/');
       return response.data;
 };
 
 const setBudget = async (budgetData) => {
-      const config = {
-            headers: {
-                  Authorization: `Bearer ${getToken()}`,
-            },
-      };
-      const response = await axios.post(API_URL, budgetData, config);
+      const response = await API.post('/budgets/', budgetData);
       return response.data;
 };
 
 const deleteBudget = async (budgetId) => {
-      const config = {
-            headers: {
-                  Authorization: `Bearer ${getToken()}`,
-            },
-      };
-      const response = await axios.delete(API_URL + budgetId, config);
+      const response = await API.delete('/budgets/' + budgetId);
       return response.data;
 };
 

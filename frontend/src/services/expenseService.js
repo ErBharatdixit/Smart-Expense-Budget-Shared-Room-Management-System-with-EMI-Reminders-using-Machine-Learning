@@ -1,60 +1,27 @@
-import axios from 'axios';
-
-const API_URL = 'http://localhost:8000/api/expenses';
-
-// Get user token
-const getToken = () => {
-      const user = JSON.parse(localStorage.getItem('user'));
-      return user?.token;
-}
+import API from './api';
 
 const getExpenses = async () => {
-      const config = {
-            headers: {
-                  Authorization: `Bearer ${getToken()}`,
-            },
-      };
-      const response = await axios.get(API_URL, config);
+      const response = await API.get('/expenses');
       return response.data;
 };
 
 const createExpense = async (expenseData) => {
-      const config = {
-            headers: {
-                  Authorization: `Bearer ${getToken()}`,
-            },
-      };
-      const response = await axios.post(API_URL, expenseData, config);
+      const response = await API.post('/expenses', expenseData);
       return response.data;
 };
 
 const deleteExpense = async (expenseId) => {
-      const config = {
-            headers: {
-                  Authorization: `Bearer ${getToken()}`,
-            },
-      };
-      const response = await axios.delete(`${API_URL}/${expenseId}`, config);
+      const response = await API.delete(`/expenses/${expenseId}`);
       return response.data;
 };
 
 const predictCategory = async (title) => {
-      const config = {
-            headers: {
-                  Authorization: `Bearer ${getToken()}`,
-            },
-      };
-      const response = await axios.post(`${API_URL}/predict`, { title }, config);
+      const response = await API.post('/expenses/predict', { title });
       return response.data;
 };
 
 const getPrediction = async () => {
-      const config = {
-            headers: {
-                  Authorization: `Bearer ${getToken()}`,
-            },
-      };
-      const response = await axios.get(`${API_URL}/prediction`, config);
+      const response = await API.get('/expenses/prediction');
       return response.data;
 };
 
@@ -65,8 +32,7 @@ const expenseService = {
       predictCategory,
       getPrediction,
       getInsights: async () => {
-            const config = { headers: { Authorization: `Bearer ${getToken()}` } };
-            const response = await axios.get(`${API_URL}/insights`, config);
+            const response = await API.get('/expenses/insights');
             return response.data;
       }
 };

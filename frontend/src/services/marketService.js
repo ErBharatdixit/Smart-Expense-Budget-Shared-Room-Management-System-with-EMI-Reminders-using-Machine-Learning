@@ -1,54 +1,27 @@
-import axios from 'axios';
-
-const API_URL = 'http://localhost:8000/api/market';
+import API from './api';
 
 const getProducts = async () => {
-      const config = {
-            headers: {
-                  Authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
-            },
-      };
-      const response = await axios.get(`${API_URL}/products`, config);
+      const response = await API.get('/market/products');
       return response.data;
 };
 
 const getHistory = async (id) => {
-      const config = {
-            headers: {
-                  Authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
-            },
-      };
-      const response = await axios.get(`${API_URL}/history/${id}`, config);
+      const response = await API.get(`/market/history/${id}`);
       return response.data;
 };
 
 const getPrediction = async (id) => {
-      const config = {
-            headers: {
-                  Authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
-            },
-      };
-      const response = await axios.get(`${API_URL}/predict/${id}`, config);
+      const response = await API.get(`/market/predict/${id}`);
       return response.data;
 };
 
 const seedData = async () => {
-      const config = {
-            headers: {
-                  Authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
-            },
-      };
-      const response = await axios.post(`${API_URL}/seed`, {}, config);
+      const response = await API.post('/market/seed', {});
       return response.data;
 };
 
 const syncData = async () => {
-      const config = {
-            headers: {
-                  Authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
-            },
-      };
-      const response = await axios.post(`${API_URL}/sync`, {}, config);
+      const response = await API.post('/market/sync', {});
       return response.data;
 };
 
