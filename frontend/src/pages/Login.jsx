@@ -38,14 +38,14 @@ const Login = () => {
                   <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/20 rounded-full blur-[120px]"></div>
                   <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-600/20 rounded-full blur-[120px]"></div>
 
-                  <div className="w-full max-w-md p-8 relative z-10">
-                        <div className="glass-card p-10 rounded-2xl">
+                  <div className="w-full max-w-md px-4 md:px-8 py-8 relative z-10">
+                        <div className="glass-card p-6 md:p-10 rounded-2xl">
                               {/* Logo & Header */}
                               <div className="text-center mb-8">
                                     <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-blue-600/20 text-blue-500 mb-4">
                                           <Wallet size={28} />
                                     </div>
-                                    <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">
+                                    <h1 className="text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">
                                           Smart Finance
                                     </h1>
                                     <p className="text-slate-400 text-sm mt-2 font-medium">

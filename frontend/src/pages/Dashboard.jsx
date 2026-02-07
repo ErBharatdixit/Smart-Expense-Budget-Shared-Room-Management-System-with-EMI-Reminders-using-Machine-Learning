@@ -274,23 +274,23 @@ const Dashboard = () => {
       return (
             <div className="space-y-8 animate-in fade-in duration-500">
                   {/* Top Header */}
-                  <div className="flex justify-between items-center">
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
                         <div>
-                              <h1 className="text-2xl font-bold text-white">
+                              <h1 className="text-xl md:text-2xl font-bold text-white">
                                     Good Evening, {user?.name?.split(' ')[0]} 👋
                               </h1>
                               <p className="text-slate-400 text-sm mt-1">Here's what's happening with your money.</p>
                         </div>
 
-                        <div className="flex items-center gap-4 relative">
+                        <div className="flex items-center gap-3 md:gap-4 relative">
                               {/* Date / Calendar Icon */}
                               <div className="relative">
                                     <button
                                           onClick={() => { setShowCalendar(!showCalendar); setShowNotifications(false); }}
-                                          className="glass-card px-4 py-2 rounded-xl flex items-center gap-2 text-slate-300 hover:text-white transition-colors"
+                                          className="glass-card px-3 md:px-4 py-2 rounded-xl flex items-center gap-2 text-slate-300 hover:text-white transition-colors"
                                     >
-                                          <Calendar size={16} />
-                                          <span className="text-sm font-medium">{currentDate}</span>
+                                          <Calendar size={16} className="flex-shrink-0" />
+                                          <span className="text-xs md:text-sm font-medium hidden sm:inline">{currentDate}</span>
                                     </button>
 
                                     {showCalendar && (
@@ -392,9 +392,9 @@ const Dashboard = () => {
                               <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-blue-600/10 rounded-full blur-[120px] pointer-events-none"></div>
 
                               <div className="relative z-10">
-                                    <div className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-6 mb-10 border-b border-slate-800 pb-8">
+                                    <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-10 border-b border-slate-800 pb-8">
                                           <div>
-                                                <h2 className="text-3xl font-bold text-white flex items-center gap-4">
+                                                <h2 className="text-2xl md:text-3xl font-bold text-white flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
                                                       Unified Financial Health Report
                                                       <span className="bg-gradient-to-r from-purple-500/20 to-blue-500/20 text-blue-400 text-xs font-bold px-3 py-1.5 rounded-full border border-blue-500/20 uppercase tracking-widest shadow-lg shadow-purple-500/5">
                                                             AI Powered
