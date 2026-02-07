@@ -18,7 +18,6 @@ const registerUser = asyncHandler(async (req, res) => {
       // Check if user exists
       let user = await User.findOne({ email });
 
-
       if (user) {
             if (user.isVerified) {
                   res.status(400);
@@ -36,35 +35,32 @@ const registerUser = asyncHandler(async (req, res) => {
 
             // Create user
             user = new User({
-                  user = new User({
-                        name,
-                        email,
-                        password: hashedPassword,
-                        isVerified: true
-                  });
-            }
+                  name,
+                  email,
+                  password: hashedPassword,
+                  isVerified: true
+            });
+      }
 
       // No OTP needed for simple registration
       user.isVerified = true;
 
-            console.time('DB: Save User');
-            await user.save();
-            console.timeEnd('DB: Save User');
+      await user.save();
 
-            if (user) {
-                  res.status(201).json({
-                        _id: user.id,
-                        name: user.name,
-                        email: user.email,
-                        token: generateToken(user._id),
-                        message: 'Registration successful'
-                  });
-                  console.timeEnd('Registration Time');
-            } else {
-                  res.status(400);
-                  throw new Error('Invalid user data');
-            }
-      });
+      if (user) {
+            res.status(201).json({
+                  _id: user.id,
+                  name: user.name,
+                  email: user.email,
+                  token: generateToken(user._id),
+                  message: 'Registration successful'
+            });
+      } else {
+            res.status(400);
+            throw new Error('Invalid user data');
+      }
+});
+
 
 
 
