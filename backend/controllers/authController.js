@@ -8,7 +8,6 @@ const User = require('../models/User');
 // @route   POST /api/auth/register
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
-      console.time('Registration Time');
       const { name, email, password } = req.body;
 
       if (!name || !email || !password) {
@@ -17,9 +16,8 @@ const registerUser = asyncHandler(async (req, res) => {
       }
 
       // Check if user exists
-      console.time('DB: Find User');
       let user = await User.findOne({ email });
-      console.timeEnd('DB: Find User');
+
 
       if (user) {
             if (user.isVerified) {
@@ -27,49 +25,46 @@ const registerUser = asyncHandler(async (req, res) => {
                   throw new Error('User already exists');
             }
 
-            console.time('Bcrypt: Hash Password');
             const salt = await bcrypt.genSalt(10);
             const hashedPassword = await bcrypt.hash(password, salt);
-            console.timeEnd('Bcrypt: Hash Password');
 
             user.name = name;
             user.password = hashedPassword;
       } else {
-            console.time('Bcrypt: Hash Password');
             const salt = await bcrypt.genSalt(10);
             const hashedPassword = await bcrypt.hash(password, salt);
-            console.timeEnd('Bcrypt: Hash Password');
 
             // Create user
             user = new User({
-                  name,
-                  email,
-                  password: hashedPassword,
-                  isVerified: true
-            });
-      }
+                  user = new User({
+                        name,
+                        email,
+                        password: hashedPassword,
+                        isVerified: true
+                  });
+            }
 
       // No OTP needed for simple registration
       user.isVerified = true;
 
-      console.time('DB: Save User');
-      await user.save();
-      console.timeEnd('DB: Save User');
+            console.time('DB: Save User');
+            await user.save();
+            console.timeEnd('DB: Save User');
 
-      if (user) {
-            res.status(201).json({
-                  _id: user.id,
-                  name: user.name,
-                  email: user.email,
-                  token: generateToken(user._id),
-                  message: 'Registration successful'
-            });
-            console.timeEnd('Registration Time');
-      } else {
-            res.status(400);
-            throw new Error('Invalid user data');
-      }
-});
+            if (user) {
+                  res.status(201).json({
+                        _id: user.id,
+                        name: user.name,
+                        email: user.email,
+                        token: generateToken(user._id),
+                        message: 'Registration successful'
+                  });
+                  console.timeEnd('Registration Time');
+            } else {
+                  res.status(400);
+                  throw new Error('Invalid user data');
+            }
+      });
 
 
 
