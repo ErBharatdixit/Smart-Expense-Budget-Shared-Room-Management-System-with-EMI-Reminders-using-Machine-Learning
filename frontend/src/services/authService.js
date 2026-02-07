@@ -3,6 +3,10 @@ import API from './api';
 const authService = {
       register: async (userData) => {
             const response = await API.post('/auth/register', userData);
+            if (response.data && response.data.token) {
+                  localStorage.setItem('user', JSON.stringify(response.data));
+                  localStorage.setItem('token', response.data.token);
+            }
             return response.data;
       },
 
